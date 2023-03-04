@@ -37,4 +37,17 @@ const displayAiUniverse = aiUniverses =>{
     
  })
 
+// click sort by date button to sort data
+
+document.getElementById('btn-sort').addEventListener('click', function(){
+    const url = `https://openapi.programming-hero.com/api/ai/tools`;
+    fetch(url).then(res => res.json()).then(data => {
+        const sortData = data.data.tools;
+        const newSortData = sortData.sort((a,b)=> new Date(a.published_in) - new Date(b.published_in));
+        displayAiUniverse(newSortData);
+    })
+})
+   
+
+
 loadAiUniverse();
