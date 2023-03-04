@@ -2,14 +2,14 @@ const loadAiUniverse = async() =>{
     const url = `https://openapi.programming-hero.com/api/ai/tools`;
     const res = await fetch(url);
     const data = await res.json();
+    // display 6 cards only
     displayAiUniverse(data.data.tools.slice(0,6));
 }
 
 const displayAiUniverse = aiUniverses =>{
     const dataContainer = document.getElementById('data-container');
     dataContainer.innerHTML = "";
-    // display 6 cards only
-    // aiUniverses = aiUniverses.slice(0,6);
+    
     // display all data
     aiUniverses.forEach(aiUniverse =>{
         const {features, id, image, name, published_in} = aiUniverse;
@@ -22,6 +22,11 @@ const displayAiUniverse = aiUniverses =>{
             <h5 class="card-title">Features</h5>
             <p class="card-text">${features ? features.map((item_list, index) => `<br> <span>${index + 1 }.${item_list}</span>`) : "Feature not found"}</p>
         </div>
+        <div class="card-footer">
+        <small class="fw-bold fs-4 text">${name}</small> <br>
+        <i style="font-size:18px" class=" mt-3 text-muted fa">&#xf073;</i> 
+        <small class="text-muted fw-semibold">${published_in}</small>
+      </div>
      </div>
         `;
         dataContainer.appendChild(dataDiv);
