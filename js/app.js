@@ -22,16 +22,21 @@ const displayAiUniverse = aiUniverses => {
             <h5 class="card-title">Features</h5>
             <p class="card-text">${features ? features.map((item_list, index) => `<br> <span>${index + 1}.${item_list}</span>`) : "Feature not found"}</p>
         </div>
-        <div class="card-footer w-100">
-        <small class="fw-bold fs-4 text">${name}</small> <br>
-        <i style="font-size:18px" class=" mt-3 text-muted fa">&#xf073;</i> 
-        <small class="text-muted fw-semibold">${published_in}</small>
-        <div>
-        <i class="fa-sharp fa-solid fa-arrow-right"
-        data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="modalData('${id}')" >
-        </i>
-        </div>
-      </div>
+        <div class="card-footer">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex flex-column">
+                <h3>${name ? name : "Data not found"}</h3>
+                <div class="d-flex  align-items-center justify-content-start g-2">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span class="ms-2">${published_in ? published_in : "Date not available"}</span>
+                </div>
+            </div>
+            <div>
+                <i class="fa-sharp fa-solid fa-arrow-right"
+                data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="modalData('${id}')"
+                ></i>
+            </div>
+
      </div>
         `;
         // spinner/loader
