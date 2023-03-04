@@ -144,7 +144,7 @@ const modalDataDisplay = (values) => {
 const toggleAccuracy = isLoading => {
     const accuracyBtn = document.getElementById('accuracy-btn');
     console.log(typeof isLoading.score);
-    if (isLoading.score !== undefined || isLoading.score !== null) {
+    if (isLoading.score) {
         accuracyBtn.classList.remove('d-none');
     } else {
         accuracyBtn.classList.add('d-none');
