@@ -2,13 +2,14 @@ const loadAiUniverse = async() =>{
     const url = `https://openapi.programming-hero.com/api/ai/tools`;
     const res = await fetch(url);
     const data = await res.json();
-    displayAiUniverse(data.data.tools);
+    displayAiUniverse(data.data.tools.slice(0,6));
 }
 
 const displayAiUniverse = aiUniverses =>{
     const dataContainer = document.getElementById('data-container');
+    dataContainer.innerHTML = "";
     // display 6 cards only
-    aiUniverses = aiUniverses.slice(0,6);
+    // aiUniverses = aiUniverses.slice(0,6);
     // display all data
     aiUniverses.forEach(aiUniverse =>{
         const {features, id, image, name, published_in} = aiUniverse;
@@ -26,9 +27,14 @@ const displayAiUniverse = aiUniverses =>{
         dataContainer.appendChild(dataDiv);
     })
 }
-//  see more
-// document.getElementById('btn-see-more').addEventListener('click', function(){
+// click see more button to load all data 
+ document.getElementById('btn-see-more').addEventListener('click', function(){
     
-// })
+        const url = `https://openapi.programming-hero.com/api/ai/tools`;
+        fetch(url).then(res => res.json()).then(data => {
+        displayAiUniverse(data.data.tools);
+       })
+    
+ })
 
 loadAiUniverse();
