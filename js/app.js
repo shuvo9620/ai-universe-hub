@@ -22,13 +22,17 @@ const displayAiUniverse = aiUniverses =>{
             <h5 class="card-title">Features</h5>
             <p class="card-text">${features ? features.map((item_list, index) => `<br> <span>${index + 1 }.${item_list}</span>`) : "Feature not found"}</p>
         </div>
-        <div class="card-footer">
+        <div class="card-footer w-100">
         <small class="fw-bold fs-4 text">${name}</small> <br>
         <i style="font-size:18px" class=" mt-3 text-muted fa">&#xf073;</i> 
         <small class="text-muted fw-semibold">${published_in}</small>
+        <i class='fa fa-arrow-right mx-5'></i>   
       </div>
      </div>
         `;
+        // spinner/loader
+        showSpinner(false);
+
         dataContainer.appendChild(dataDiv);
     })
 }
@@ -52,7 +56,19 @@ document.getElementById('btn-sort').addEventListener('click', function(){
         displayAiUniverse(newSortData);
     })
 })
-   
 
+const showSpinner = isLoading => {
+    const loadSpinner = document.getElementById('spinner');
+    if (isLoading) {
+        loadSpinner.classList.remove('d-none');
+    } else {
+        loadSpinner.classList.add('d-none');
+    }
+}
 
+//  spinner function call  
+showSpinner(true);
+
+// show all data function
 loadAiUniverse();
+
